@@ -10,17 +10,8 @@ public class FrontEndUI{
 
         do { 
             //wager has to be more than 1
-            System.out.print ("\nWager: ");
-            double wager = keyboard.nextDouble();
-            if (balance <= wager) {
-                System.out.print ("Error! Insufficient balance. \n\nWager: ");
-                wager = keyboard.nextDouble();
-            } 
-            
-            else if (wager < 1) {
-                System.out.print ("Error! Wager less than $1. \n\nWager: ");
-                wager = keyboard.nextDouble();
-            }
+            BackEndUI.Wager(balance);
+
             // must make it between 0 and 100 
             System.out.print("\nEnter dice number: ");
             double diceChoice = keyboard.nextDouble();
@@ -39,11 +30,11 @@ public class FrontEndUI{
                 boolean result = Dice.Game(diceChoice, ouChoice);
                 if (result) {
                     System.out.println("\nWinner!");
-                    balance += wager; 
+                    balance += BackEndUI.Wager(balance); 
                 }
                 else { 
                     System.out.println("\nLoser!");
-                    balance -= wager; 
+                    balance -= BackEndUI.Wager(balance); 
                 } 
                 System.out.println("\nBalance: "+ balance);  
             }
