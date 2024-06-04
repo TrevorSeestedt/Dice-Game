@@ -1,33 +1,23 @@
 // Copyright of Trevor Seestedt 2024
 import java.util.Random; 
 
-public class Dice { 
-    private double choice; 
-    private String overUnder;   
-    public boolean result; 
-
-    //random number will be generated from 1 - 10000
-    Random rand = new Random();
-    double randomNum = (rand.nextInt(10000) / 100);
-
-    public boolean Game(double choice, String overUnder, boolean result) {
-        //if user chooses to go over 
+public class Dice {  
+    
+    public static boolean Game(double choice, String overUnder) {
+        Random rand = new Random();
+        double randomNum = rand.nextDouble() * 100; // Random number between 0.00 and 100.00
+        System.out.println("The number is: "+ randomNum);
         if (overUnder.equalsIgnoreCase("Over")) {
-            if (choice > randomNum) {
-                result = true; 
-            }
-            else {
-                result = false; 
-            }
-        }
-        //if user chooses to go under 
+            return randomNum > choice;
+        } 
+        
         else if (overUnder.equalsIgnoreCase("Under")) {
-            if (choice < randomNum) {
-                result =true; 
-            }
-            else {
-                result = false; 
-            }
+            return randomNum < choice;
+        } 
+        
+        else {
+            // Neither "Over" nor "Under" was selected
+            return false;
         }
     }
 }
