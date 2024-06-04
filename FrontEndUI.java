@@ -12,38 +12,28 @@ public class FrontEndUI{
             //wager has to be more than 1
             BackEndUI.Wager(balance);
 
-            // must make it between 0 and 100 
-            System.out.print("\nEnter dice number: ");
-            double diceChoice = keyboard.nextDouble();
-            if (diceChoice <= 0 || diceChoice > 100) {
-                System.out.println("\nError! Dice choice is out of range. \n\nEnter dice number: ");
-                diceChoice = keyboard.nextDouble();
-            }
+            //user chooses number between 0.01 and 100 make it between 0 and 100 
+            BackEndUI.DiceNumber();
 
-            System.out.print("\nInput 'Over' or 'Under': ");
-            String ouChoice = keyboard.nextLine();
-            if (ouChoice.isEmpty()) {
-                ouChoice = keyboard.nextLine(); // Read the actual input
-            }
+            //user prompted with over under
+            BackEndUI.overUnder();
 
-            if (ouChoice.equalsIgnoreCase("Over") || ouChoice.equalsIgnoreCase("Under")) {
-                boolean result = Dice.Game(diceChoice, ouChoice);
-                if (result) {
-                    System.out.println("\nWinner!");
-                    balance += BackEndUI.Wager(balance); 
-                }
-                else { 
-                    System.out.println("\nLoser!");
-                    balance -= BackEndUI.Wager(balance); 
-                } 
-                System.out.println("\nBalance: "+ balance);  
-            }
+            //result 
+            boolean result = Dice.Game(BackEndUI.DiceNumber(), BackEndUI.overUnder());
 
-            else {
-                System.out.println("\nNeither choice was selected. \n\nInput 'Over' or 'Under': ");
-                ouChoice = keyboard.nextLine();
-            }
-
+            //loss or win and balance change
+            if (result) {
+                System.out.println("\nWinner!");
+                balance += BackEndUI.Wager(balance);                    
+                System.out.println("\nBalance: "+ balance);   
+            } else { 
+                System.out.println("\nLoser!");
+                balance -= BackEndUI.Wager(balance);
+                System.out.println("\nBalance: "+ balance);   
+            } 
+            //continue
+            System.out.println("Would you like to continue ('Yes' or 'No')?");
+            cont = keyboard.nextBoolean();
         } while (cont != false);
 
         

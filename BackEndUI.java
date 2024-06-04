@@ -19,4 +19,30 @@ public class BackEndUI {
     }
 
 
+    public static double DiceNumber() {
+        Scanner keyboard = new Scanner(System.in);
+        System.out.println("Dice number must be between 0.01 and 100"); //implement slider in GUI
+        System.out.print("\nEnter dice number: ");
+        double diceChoice = keyboard.nextDouble();
+        while (diceChoice <= 0 || diceChoice > 100) {
+            System.out.println("\nError! Dice choice is out of range. \n\nEnter dice number: ");                
+            diceChoice = keyboard.nextDouble();
+        }
+        return diceChoice;
+    }
+
+    public static String overUnder() {
+        Scanner keyboard = new Scanner(System.in);
+        System.out.print("\nInput 'Over' or 'Under': ");
+        String ouChoice = keyboard.nextLine();
+        while (!ouChoice.equalsIgnoreCase("Over") && !ouChoice.equalsIgnoreCase("Under")) {
+            System.out.print("\nError! Choice is invalid. \nInput 'Over' or 'Under': ");
+            ouChoice = keyboard.nextLine();
+        }
+        return ouChoice;
+    }
+
+
+
+
 }
