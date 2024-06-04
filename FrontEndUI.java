@@ -6,8 +6,7 @@ public class FrontEndUI{
         Scanner keyboard = new Scanner(System.in);
         double balance = 100; // test before user 
         boolean cont = true;
-        System.out.println("Welcome to the dice game! \n");
-        System.out.println("\nBalance: "+ balance);  //create user database, each user with uuid and own bal. 
+        BackEndUI.Welcome(balance);
 
         do { 
             //wager has to be more than 1
